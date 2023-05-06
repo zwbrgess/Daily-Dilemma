@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Questions</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+
+    .questions-list {
+      list-style: none;
+      padding: 0;
+    }
+
+    .question-item {
+      background-color: #f5f5f5;
+      border: 1px solid #ddd;
+      border-radius: 3px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px;
+      margin-bottom: 10px;
+    }
+
+    .question-item a {
+      text-decoration: none;
+      color: #333;
+      font-weight: bold;
+    }
+
+    .question-item span {
+      color: #666;
+      font-size: 0.9em;
+    }
+  </style>
+</head>
+<body>
+  <h1>Questions</h1>
+
+  <ul class="questions-list">
+    <% @questions.each do |question| %>
+      <li class="question-item">
+        <div>
+          <a href="<%= question_path(question) %>"><%= question.content %></a>
+          <br>
+          <span>Created: <%= question.created_at.strftime('%Y-%m-%d') %></span>
+        </div>
+        <div>
+          <%= link_to 'View', question_path(question) %>
+        </div>
+      </li>
+    <% end %>
+  </ul>
+</body>
+</html>

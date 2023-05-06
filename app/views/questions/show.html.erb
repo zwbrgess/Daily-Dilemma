@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= @question.content %></title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+
+    .question {
+      background-color: #f5f5f5;
+      border: 1px solid #ddd;
+      border-radius: 3px;
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+
+    .question h1 {
+      margin: 0 0 10px;
+    }
+
+    .question-metadata {
+      color: #666;
+      font-size: 0.9em;
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="question">
+    <h1><%= @question.content %></h1>
+    <div class="question-metadata">
+      <strong>Created At:</strong>
+      <%= @question.created_at.strftime('%Y-%m-%d') %>
+    </div>
+  </div>
+
+  <%= link_to 'Back', questions_path %>
+</body>
+</html>
