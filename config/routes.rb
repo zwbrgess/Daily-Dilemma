@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
-  # Defines the root path route ("/")
-  # root "articles#index"
+  # This line declares the root page of the website
+  root 'questions#index'
+
+  # This is shorthand for declaring the index and show pages
+  resources :questions, only: [:index, :show]
+  
 end
