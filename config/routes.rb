@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :users
 
   # This line declares the root page of the website
   root 'questions#index'
