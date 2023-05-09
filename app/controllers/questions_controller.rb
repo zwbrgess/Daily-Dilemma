@@ -5,5 +5,6 @@ class QuestionsController < ApplicationController
 
   def show
     @question = Question.find(params[:id])
+    @comments = @question.comments.order(created_at: :asc)
   end
 end
