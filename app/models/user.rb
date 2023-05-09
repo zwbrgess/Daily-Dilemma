@@ -15,4 +15,10 @@ class User < ApplicationRecord
 
   validates :username, presence: true, uniqueness: true
 
+
+  validates :role, presence: true, inclusion: { in: %w[admin regular] }
+
+  def admin?
+    role == 'admin'
+  end
 end
