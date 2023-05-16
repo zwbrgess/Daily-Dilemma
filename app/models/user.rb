@@ -19,6 +19,13 @@ class User < ApplicationRecord
   
   validates :role, presence: true, inclusion: { in: %w[admin regular] }
 
+  # this chunk solves the "empty role" issue.
+  after_initialize :set_default_role, if: :new_record?
+  def set_default_role
+    self.role ||= 'regular' # users will have 'user' role by default
+  end
+
+  # this very simplistically checks for the admin role
   def admin?
     role == 'admin'
   end
