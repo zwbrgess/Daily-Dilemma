@@ -5,6 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title><%= @question.content %></title>
   <style>
+
+    .profile-picture {
+        width: 50px;  /* Adjust as needed */
+        height: 50px;  /* Adjust as needed */
+        border-radius: 50%;  /* Makes the image round */
+        object-fit: cover;  /* Ensures the image covers the whole area */
+      }
+
     body {
       font-family: Arial, sans-serif;
       margin: 0;
@@ -79,6 +87,7 @@
   <h2>Answers:</h2>
   <% @comments.each do |comment| %>
     <div class="comment">
+    <%= image_tag(comment.user.profile_picture, class: 'profile-picture') if comment.user.profile_picture.attached? %>
       <h2><%= comment.user.username %></h2>
       <p><%= comment.content %></p>
       <div class="comment-metadata">
