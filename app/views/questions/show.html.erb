@@ -61,6 +61,22 @@
       transition: background-color 0.3s;
     }
 
+    .comment-actions {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 10px;
+    }
+
+    .comment-buttons {
+      display: flex;
+      align-items: center;
+    }
+
+    .comment-metadata {
+      margin-bottom: 0;
+    }
+
     .edit-button:hover, .delete-button:hover {
       background-color: #0056b3;
     }
@@ -87,19 +103,29 @@
   <h2>Answers:</h2>
   <% @comments.each do |comment| %>
     <div class="comment">
-    <%= image_tag(comment.user.profile_picture, class: 'profile-picture') if comment.user.profile_picture.attached? %>
+
+      <!-- this behemoth allows us to use a profile picture as a link -->
+      <% if comment.user.profile_picture.attached? %>
+        <%= link_to(user_path(comment.user)) do %>
+          <%= image_tag(comment.user.profile_picture, class: 'profile-picture') %>
+        <% end %>
+      <% end %>
+
       <h2><%= comment.user.username %></h2>
       <p><%= comment.content %></p>
-      <div class="comment-metadata">
-        <strong>Answered On:</strong>
-        <%= comment.created_at.strftime('%Y-%m-%d %H:%M') %>
-      </div>
-      <% if user_signed_in? && current_user == comment.user %>
-        <div style="display: flex; justify-content: flex-start">
-          <%= link_to 'Edit', edit_question_comment_path(@question, comment), class: 'edit-button', style: 'background-color: #007bff; color: white; text-decoration: none; padding: 5px 10px; margin-right: 10px;' %>
-          <%= button_to 'Delete', question_comment_path(@question, comment), method: :delete, data: { confirm: 'Are you sure you want to delete this comment?' }, class: 'delete-button', style: 'background-color: #dc3545; color: white; text-decoration: none; padding: 5px 10px;' %>
+
+      <div class="comment-actions">
+        <% if user_signed_in? && current_user == comment.user %>
+          <div class="comment-buttons">
+            <%= link_to 'Edit', edit_question_comment_path(@question, comment), class: 'edit-button', style: 'background-color: #007bff; color: white; text-decoration: none; padding: 5px 10px; margin-right: 10px;' %>
+            <%= button_to 'Delete', question_comment_path(@question, comment), method: :delete, data: { confirm: 'Are you sure you want to delete this comment?' }, class: 'delete-button', style: 'background-color: #dc3545; color: white; text-decoration: none; padding: 5px 10px;' %>
+          </div>
+        <% end %>
+        <div class="comment-metadata">
+          <strong>Answered On:</strong>
+          <%= comment.created_at.strftime('%Y-%m-%d %H:%M') %>
         </div>
-      <% end %>
+      </div>
     </div>
   <% end %>
 
