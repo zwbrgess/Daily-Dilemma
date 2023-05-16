@@ -16,5 +16,11 @@ class User < ApplicationRecord
   validates :username, presence: true, uniqueness: true
 
   has_one_attached :profile_picture
+  
+  validates :role, presence: true, inclusion: { in: %w[admin regular] }
+
+  def admin?
+    role == 'admin'
+  end
 
 end

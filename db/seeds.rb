@@ -1,31 +1,48 @@
+admin = User.find_or_create_by(email: "admin@email.com") do |user|
+  user.username = "admin"
+  user.password = "admin_password"
+  user.password_confirmation = "admin_password"
+  user.role = "admin"
+end
+
 john_doe = User.find_or_create_by(email: "john.doe@example.com") do |user|
   user.username = "john_doe"
   user.password = "password123"
   user.password_confirmation = "password123"
+  user.role = "regular"
+
 end
 
 jane_smith = User.find_or_create_by(email: "jane.smith@example.com") do |user|
   user.username = "jane_smith"
   user.password = "password123"
   user.password_confirmation = "password123"
+  user.role = "regular"
+
 end
 
 michael_brown = User.find_or_create_by(email: "michael.brown@example.com") do |user|
   user.username = "michael_brown"
   user.password = "password123"
   user.password_confirmation = "password123"
+  user.role = "regular"
+
 end
 
 susan_wilson = User.find_or_create_by(email: "susan.wilson@example.com") do |user|
   user.username = "susan_wilson"
   user.password = "password123"
   user.password_confirmation = "password123"
+  user.role = "regular"
+
 end
 
 paul_garcia = User.find_or_create_by(email: "paul.garcia@example.com") do |user|
   user.username = "paul_garcia"
   user.password = "password123"
   user.password_confirmation = "password123"
+  user.role = "regular"
+
 end
 
 # Questions
