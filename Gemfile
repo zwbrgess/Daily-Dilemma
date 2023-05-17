@@ -72,3 +72,12 @@ group :test do
 end
 
 gem 'devise'
+
+# our scheduler
+gem 'sidekiq'
+gem 'sidekiq-scheduler'
+
+# testing the scheduler
+group :test do
+  gem 'rspec-rails'
+end

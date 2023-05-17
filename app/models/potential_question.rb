@@ -1,0 +1,2 @@
+class PotentialQuestion < ApplicationRecord
+end
